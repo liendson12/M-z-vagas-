@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="pt-MZ">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Administrador | Quadro de Vagas</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Public+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="./">Quadro de Vagas</a>
+      <a class="header-link" href="./">Ver site</a>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <!-- Login -->
+    <section id="login" class="box login-box" hidden>
+      <h2>Entrar</h2>
+      <form id="login-form" class="form-grid" style="grid-template-columns:1fr">
+        <div class="field">
+          <label for="email">E-mail</label>
+          <input id="email" type="email" autocomplete="username" required>
+        </div>
+        <div class="field">
+          <label for="password">Senha</label>
+          <input id="password" type="password" autocomplete="current-password" required>
+        </div>
+        <div class="actions" style="margin-top:0">
+          <button class="btn" type="submit">Entrar</button>
+        </div>
+      </form>
+      <p id="login-msg" class="msg" role="alert"></p>
+    </section>
+
+    <!-- Painel -->
+    <div id="panel" class="panel" hidden>
+      <div class="topbar">
+        <p id="who" class="count" style="margin:0"></p>
+        <button id="logout" class="btn secondary small" type="button">Sair</button>
+      </div>
+
+      <section class="box">
+        <h2 id="form-title">Nova vaga</h2>
+        <form id="job-form" novalidate>
+          <div class="form-grid">
+            <div class="field">
+              <label for="title">Cargo</label>
+              <input id="title" maxlength="140" required>
+            </div>
+            <div class="field">
+              <label for="company">Empresa</label>
+              <input id="company" maxlength="120" required>
+            </div>
+            <div class="field">
+              <label for="location">Local</label>
+              <input id="location" maxlength="120" list="locais" placeholder="Maputo, Beira, Nampula ou Remoto">
+              <datalist id="locais">
+                <option value="Maputo"><option value="Matola"><option value="Beira"><option value="Nampula">
+                <option value="Quelimane"><option value="Tete"><option value="Chimoio"><option value="Nacala">
+                <option value="Pemba"><option value="Xai-Xai"><option value="Inhambane"><option value="Lichinga">
+                <option value="Moçambique (todo o país)"><option value="Remoto">
+              </datalist>
+            </div>
+            <div class="field">
+              <label for="category">Área</label>
+              <input id="category" maxlength="60" placeholder="Tecnologia, Vendas, Saúde">
+            </div>
+            <div class="field">
+              <label for="modality">Modalidade</label>
+              <select id="modality">
+                <option value="presencial">Presencial</option>
+                <option value="hibrido">Híbrido</option>
+                <option value="remoto">Remoto</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="job_type">Tipo de contrato</label>
+              <select id="job_type">
+                <option value="efectivo">Efectivo</option>
+                <option value="termo">Contrato a termo</option>
+                <option value="parcial">Tempo parcial</option>
+                <option value="estagio">Estágio</option>
+                <option value="freelancer">Freelancer</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="salary">Salário <span class="hint">(opcional)</span></label>
+              <input id="salary" maxlength="80" placeholder="25.000 MT a 35.000 MT">
+            </div>
+            <div class="field">
+              <label for="expires_at">Inscrições até <span class="hint">(opcional)</span></label>
+              <input id="expires_at" type="date">
+            </div>
+            <div class="field full">
+              <label for="apply_url">Link de candidatura</label>
+              <input id="apply_url" type="url" maxlength="500" placeholder="https://... , mailto:rh@empresa.co.mz ou https://wa.me/258..." required>
+            </div>
+            <div class="field full">
+              <label for="description">Descrição <span class="hint">(separe parágrafos com uma linha em branco)</span></label>
+              <textarea id="description" maxlength="10000"></textarea>
+            </div>
+            <div class="field">
+              <label for="status">Situação</label>
+              <select id="status">
+                <option value="published">Publicada</option>
+                <option value="draft">Rascunho</option>
+                <option value="closed">Encerrada</option>
+              </select>
+            </div>
+          </div>
+          <div class="actions">
+            <button id="save" class="btn" type="submit">Publicar vaga</button>
+            <button id="cancel" class="btn secondary" type="button" hidden>Cancelar edição</button>
+          </div>
+          <p id="form-msg" class="msg" role="status" aria-live="polite"></p>
+        </form>
+      </section>
+
+      <section class="box">
+        <h2>Vagas cadastradas</h2>
+        <ul id="admin-list" class="admin-list"></ul>
+        <p id="list-msg" class="msg" role="status" aria-live="polite"></p>
+      </section>
+    </div>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/config.js"></script>
+  <script src="js/common.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>
